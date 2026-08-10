@@ -1,5 +1,4 @@
 import { ThemeProvider } from './context/ThemeContext';
-import { BackgroundParticles } from './components/BackgroundParticles';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
@@ -12,16 +11,9 @@ import { Footer } from './components/Footer';
 export function App() {
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen bg-surface text-main selection:bg-accent-primary/25 selection:text-accent-primary">
-        
-        {/* Interactive Canvas Background Particles */}
-        <BackgroundParticles />
-
-        {/* Top Navbar */}
+      <div className="min-h-screen bg-surface text-main font-sans selection:bg-accent-primary/30 selection:text-accent-primary">
         <Navbar />
-
-        {/* Main Content Sections */}
-        <main className="relative z-10">
+        <main>
           <HeroSection />
           <AboutSection />
           <TechStackSection />
@@ -29,10 +21,7 @@ export function App() {
           <ExperienceSection />
           <ContactSection />
         </main>
-
-        {/* Footer */}
         <Footer />
-
       </div>
     </ThemeProvider>
   );

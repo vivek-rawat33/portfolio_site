@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, Sparkles, CornerDownLeft, Play, RotateCcw } from 'lucide-react';
+import { Terminal as TerminalIcon, CornerDownLeft } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface HistoryItem {
@@ -97,7 +97,7 @@ export const InteractiveTerminal: React.FC = () => {
       case 'contact':
         resultOutput = (
           <div className="text-xs text-muted space-y-1">
-            <div>✉️ Email: <a href={`mailto:${portfolioData.contactInfo.email}`} className="text-sky-400 underline">{portfolioData.contactInfo.email}</a></div>
+            <div>📧 Email: <a href={`mailto:${portfolioData.contactInfo.email}`} className="text-sky-400 underline">{portfolioData.contactInfo.email}</a></div>
             <div>📍 Location: <span className="text-main">{portfolioData.contactInfo.location}</span></div>
             <div>💼 Status: <span className="text-emerald-400">{portfolioData.personalInfo.availability}</span></div>
           </div>
