@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@layer base {
+  /* 1. Dark Theme (Default) */
+  :root, html[data-theme="dark"] {
+    --bg-surface: #0a0d14;
+    --bg-surface-elevated: #111622;
+    --bg-card: rgba(17, 22, 34, 0.85);
+    --bg-card-hover: rgba(23, 30, 46, 0.95);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(56, 189, 248, 0.35);
+
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    --accent-primary: #38bdf8;
+    --accent-secondary: #818cf8;
+    --accent-tertiary: #c084fc;
+
+    --glow-color: rgba(56, 189, 248, 0.12);
+    --badge-bg: rgba(56, 189, 248, 0.1);
+    --badge-text: #38bdf8;
+    --grid-line: rgba(255, 255, 255, 0.025);
+
+    color-scheme: dark;
+  }
+
+  /* 2. Light Theme */
+  html[data-theme="light"] {
+    --bg-surface: #f8fafc;
+    --bg-surface-elevated: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card-hover: #ffffff;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(14, 165, 233, 0.4);
+
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-dim: #94a3b8;
+
+    --accent-primary: #0284c7;
+    --accent-secondary: #6366f1;
+    --accent-tertiary: #9333ea;
+
+    --glow-color: rgba(2, 132, 199, 0.1);
+    --badge-bg: rgba(2, 132, 199, 0.1);
+    --badge-text: #0284c7;
+    --grid-line: rgba(0, 0, 0, 0.035);
+
+    color-scheme: light;
+  }
+
+  /* 3. Cyberpunk Neon Theme */
+  html[data-theme="cyberpunk"] {
+    --bg-surface: #040409;
+    --bg-surface-elevated: #0a0a14;
+    --bg-card: rgba(14, 14, 26, 0.9);
+    --bg-card-hover: rgba(24, 24, 42, 0.95);
+    --border-color: rgba(255, 0, 127, 0.25);
+    --border-hover: rgba(0, 240, 255, 0.6);
+
+    --text-main: #ffffff;
+    --text-muted: #cbd5e1;
+    --text-dim: #71717a;
+
+    --accent-primary: #00f0ff;
+    --accent-secondary: #ff007f;
+    --accent-tertiary: #ffe600;
+
+    --glow-color: rgba(255, 0, 127, 0.18);
+    --badge-bg: rgba(0, 240, 255, 0.12);
+    --badge-text: #00f0ff;
+    --grid-line: rgba(0, 240, 255, 0.05);
+
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Background Mesh & Grid Patterns */
+.bg-mesh-grid {
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Optimized Glassmorphism utility with mobile GPU fallback */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px -8px var(--glow-color);
+}
+
+.glass-nav {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .glass-panel {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .glass-nav {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
