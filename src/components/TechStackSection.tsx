@@ -53,11 +53,11 @@ export const TechStackSection: React.FC = () => {
   });
 
   return (
-    <section id="skills" className="py-24 relative bg-mesh-grid">
+    <section id="skills" className="py-16 sm:py-24 relative bg-mesh-grid overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,37 +73,39 @@ export const TechStackSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-extrabold font-heading text-main tracking-tight"
+            className="text-2xl sm:text-4xl font-extrabold font-heading text-main tracking-tight"
           >
             Technologies I Master & <span className="text-gradient">Ship To Production</span>
           </motion.h2>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 sm:mb-12 w-full">
           
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-surface-elevated/80 border border-border-color shadow-sm w-full md:w-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`relative px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                  selectedCategory === cat
-                    ? 'text-main'
-                    : 'text-muted hover:text-main hover:bg-surface/50'
-                }`}
-              >
-                {selectedCategory === cat && (
-                  <motion.div
-                    layoutId="tech-tab-active"
-                    className="absolute inset-0 bg-surface rounded-xl border border-border-color shadow-sm"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{cat}</span>
-              </button>
-            ))}
+          {/* Scrollable Category Filter Tabs for mobile responsiveness */}
+          <div className="w-full md:w-auto overflow-x-auto no-scrollbar py-1">
+            <div className="inline-flex items-center gap-1.5 p-1 rounded-2xl bg-surface-elevated/80 border border-border-color shadow-sm min-w-max">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`relative px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                    selectedCategory === cat
+                      ? 'text-main'
+                      : 'text-muted hover:text-main'
+                  }`}
+                >
+                  {selectedCategory === cat && (
+                    <motion.div
+                      layoutId="tech-tab-active"
+                      className="absolute inset-0 bg-surface rounded-xl border border-border-color shadow-sm"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 whitespace-nowrap">{cat}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Search Box */}
@@ -123,7 +125,7 @@ export const TechStackSection: React.FC = () => {
         {/* Skills Cards Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           <AnimatePresence>
             {filteredSkills.map((skill) => (
@@ -133,25 +135,25 @@ export const TechStackSection: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="p-5 rounded-2xl glass-panel group flex flex-col justify-between"
+                transition={{ duration: 0.25 }}
+                className="p-4 sm:p-5 rounded-2xl glass-panel group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center border border-border-color group-hover:border-accent-primary/40 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center border border-border-color group-hover:border-accent-primary/40 transition-colors shrink-0">
                         {iconMap[skill.icon] || <Code2 className="w-5 h-5 text-accent-primary" />}
                       </div>
-                      <div>
-                        <h3 className="font-bold text-base text-main group-hover:text-accent-primary transition-colors">
+                      <div className="truncate">
+                        <h3 className="font-bold text-sm sm:text-base text-main group-hover:text-accent-primary transition-colors truncate">
                           {skill.name}
                         </h3>
-                        <span className="text-[11px] font-medium text-muted uppercase tracking-wider">
+                        <span className="text-[10px] sm:text-[11px] font-medium text-muted uppercase tracking-wider block">
                           {skill.category}
                         </span>
                       </div>
                     </div>
-                    <span className="text-xs font-code font-bold text-accent-primary bg-accent-primary/10 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-code font-bold text-accent-primary bg-accent-primary/10 px-2.5 py-1 rounded-full shrink-0">
                       {skill.proficiency}%
                     </span>
                   </div>

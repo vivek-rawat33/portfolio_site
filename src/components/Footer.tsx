@@ -2,8 +2,7 @@ import React from 'react';
 import { 
   Code2, 
   Mail, 
-  ArrowUp, 
-  Heart
+  ArrowUp
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { GithubIcon, TwitterIcon, LinkedinIcon } from './SocialIcons';
@@ -106,11 +105,6 @@ export const Footer: React.FC = () => {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-2">
           <div>
             © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
-          </div>
-          <div className="flex items-center gap-1 font-code text-[11px]">
-            <span>Crafted with</span>
-            <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400" />
-            <span>using React 19, TypeScript & Tailwind CSS</span>
           </div>
         </div>
 

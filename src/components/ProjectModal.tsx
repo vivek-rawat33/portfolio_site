@@ -15,15 +15,15 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  // Lock body scroll when modal is active so background doesn't scroll
+  // Lock body scroll & hide navbar when modal is active so background and navbar don't overlap
   useEffect(() => {
     if (project) {
-      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('modal-open');
     } else {
-      document.body.style.overflow = 'unset';
+      document.documentElement.classList.remove('modal-open');
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.documentElement.classList.remove('modal-open');
     };
   }, [project]);
 
@@ -31,8 +31,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <AnimatePresence>
-      {/* High z-index wrapper z-[100] to sit strictly above sticky navbar z-50 */}
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      {/* High z-index overlay wrapper z-[9999] */}
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         
         {/* Dark Backdrop Overlay */}
         <motion.div
@@ -40,7 +40,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md"
         />
 
         {/* Modal Window Dialog */}
@@ -53,7 +53,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         >
           
           {/* Top Bar with Title & Close Button */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-border-color bg-surface/90 backdrop-blur-md shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-border-color bg-surface-elevated shrink-0">
             <div className="flex items-center gap-2 truncate">
               <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-accent-primary bg-accent-primary/10 px-2.5 py-0.5 rounded-full shrink-0">
                 {project.category}
@@ -184,7 +184,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* Modal Footer Bar */}
-          <div className="px-4 sm:px-6 py-3 border-t border-border-color bg-surface/90 backdrop-blur-md flex items-center justify-between shrink-0">
+          <div className="px-4 sm:px-6 py-3 border-t border-border-color bg-surface-elevated flex items-center justify-between shrink-0">
             <span className="text-[11px] text-muted font-code hidden sm:inline">
               ID: {project.id}
             </span>

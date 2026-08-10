@@ -77,6 +77,21 @@
   }
 }
 
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Hide sticky navbar completely when modal is open to eliminate any overlap */
+html.modal-open header {
+  display: none !important;
+}
+
+html.modal-open body {
+  overflow: hidden !important;
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -86,7 +101,6 @@ body {
   background-color: var(--bg-surface);
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -106,7 +120,7 @@ h1, h2, h3, h4, .font-heading {
   background-size: 40px 40px;
 }
 
-/* Optimized Glassmorphism utility with mobile GPU fallback */
+/* Glassmorphism utility */
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(12px);
@@ -136,6 +150,15 @@ h1, h2, h3, h4, .font-heading {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
+}
+
+/* Hide scrollbar utility for touch scroll tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Text Gradients */
