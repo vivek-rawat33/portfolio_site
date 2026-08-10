@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 import { 
   Mail, 
   ArrowRight, 
-  Terminal, 
-  Cpu 
+  Sparkles,
+  Zap
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { GithubIcon, TwitterIcon, LinkedinIcon } from './SocialIcons';
+import { InteractiveTerminal } from './InteractiveTerminal';
 
 export const HeroSection: React.FC = () => {
   const { personalInfo, stats, socialLinks } = portfolioData;
@@ -17,10 +18,10 @@ export const HeroSection: React.FC = () => {
   const linkedinLink = socialLinks.find(s => s.platform === 'linkedin')?.url;
 
   return (
-    <section className="relative min-h-[90vh] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-mesh-grid">
+    <section className="relative min-h-[92vh] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center justify-center overflow-hidden bg-mesh-grid">
       
       {/* Ambient Glow background */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] sm:w-[600px] h-[300px] bg-gradient-to-tr from-accent-primary/20 via-accent-secondary/15 to-accent-tertiary/20 blur-[110px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] sm:w-[650px] h-[320px] bg-gradient-to-tr from-accent-primary/20 via-accent-secondary/15 to-accent-tertiary/20 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -36,7 +37,7 @@ export const HeroSection: React.FC = () => {
               className="flex flex-wrap items-center gap-2.5 mb-5"
             >
               {/* Availability Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/25 backdrop-blur-md shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -115,7 +116,7 @@ export const HeroSection: React.FC = () => {
               {/* Primary CTA */}
               <a
                 href="#projects"
-                className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-5 py-3 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35 transition-all duration-200"
+                className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-5 py-3 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 <span>Explore Featured Projects</span>
                 <ArrowRight className="w-4 h-4" />
@@ -183,76 +184,15 @@ export const HeroSection: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Sleek SaaS Code Editor / IDE Terminal Box (NO PHOTO AT ALL!) */}
+          {/* Right Column: High-Tech Interactive Live CLI Terminal */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-full max-w-md rounded-2xl glass-panel border border-border-color shadow-2xl overflow-hidden font-code text-xs text-left"
+              className="w-full flex justify-center"
             >
-              {/* IDE Top Window Control Bar */}
-              <div className="flex items-center justify-between px-4 py-2.5 bg-surface-elevated border-b border-border-color">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-muted font-medium">
-                  <Terminal className="w-3.5 h-3.5 text-accent-primary" />
-                  <span>DeveloperProfile.ts</span>
-                </div>
-                <div className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md font-semibold">
-                  TSC Clean
-                </div>
-              </div>
-
-              {/* Syntax Highlighted Code Content */}
-              <div className="p-4 sm:p-5 space-y-2 bg-surface/90 font-code text-[11px] sm:text-xs leading-relaxed overflow-x-auto text-slate-300">
-                <div>
-                  <span className="text-purple-400">interface</span> <span className="text-amber-300">SoftwareEngineer</span> {'{'}
-                </div>
-                <div className="pl-4">
-                  <span className="text-sky-400">name</span>: <span className="text-emerald-300">'Vivek Rawat'</span>;
-                </div>
-                <div className="pl-4">
-                  <span className="text-sky-400">role</span>: <span className="text-emerald-300">'Full-Stack & AI Systems'</span>;
-                </div>
-                <div className="pl-4">
-                  <span className="text-sky-400">stack</span>: [<span className="text-emerald-300">'React 19'</span>, <span className="text-emerald-300">'TypeScript'</span>, <span className="text-emerald-300">'Node'</span>];
-                </div>
-                <div className="pl-4">
-                  <span className="text-sky-400">architecture</span>: <span className="text-emerald-300">'Modular Microservices'</span>;
-                </div>
-                <div className="pl-4">
-                  <span className="text-sky-400">performance</span>: <span className="text-amber-400">99.9</span>;
-                </div>
-                <div>{'}'}</div>
-
-                <div className="pt-2 text-dim">
-                  <span className="text-sky-400">// Instant AI Agent & RAG Pipeline Sync</span>
-                </div>
-                <div>
-                  <span className="text-purple-400">export const</span> <span className="text-blue-400">architectSystem</span> = () =&gt; ({'{'}
-                </div>
-                <div className="pl-4">
-                  <span className="text-purple-400">return</span> {'{'} <span className="text-sky-400">status</span>: <span className="text-emerald-400">'Production Ready 🚀'</span> {'}'};
-                </div>
-                <div>{'}'});</div>
-              </div>
-
-              {/* IDE Bottom Status Bar */}
-              <div className="px-4 py-2 bg-surface-elevated/90 border-t border-border-color flex items-center justify-between text-[10px] text-muted">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Main Branch • 0 Vulnerabilities</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Cpu className="w-3 h-3 text-accent-primary" />
-                  <span>React 19 Vite</span>
-                </div>
-              </div>
-
+              <InteractiveTerminal />
             </motion.div>
           </div>
 

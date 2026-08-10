@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @layer base {
-  /* 1. Dark Theme (Default) */
+  /* 1. Dark Theme (Default - Deep Obsidian & Cyber Cyan) */
   :root, html[data-theme="dark"] {
-    --bg-surface: #0a0d14;
-    --bg-surface-elevated: #111622;
-    --bg-card: rgba(17, 22, 34, 0.85);
-    --bg-card-hover: rgba(23, 30, 46, 0.95);
+    --bg-surface: #030712;
+    --bg-surface-elevated: #0B0F19;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --bg-card-hover: rgba(30, 41, 59, 0.85);
     --border-color: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(56, 189, 248, 0.35);
+    --border-hover: rgba(56, 189, 248, 0.4);
 
-    --text-main: #f1f5f9;
+    --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --text-dim: #64748b;
 
@@ -18,22 +18,22 @@
     --accent-secondary: #818cf8;
     --accent-tertiary: #c084fc;
 
-    --glow-color: rgba(56, 189, 248, 0.12);
-    --badge-bg: rgba(56, 189, 248, 0.1);
+    --glow-color: rgba(56, 189, 248, 0.2);
+    --badge-bg: rgba(56, 189, 248, 0.12);
     --badge-text: #38bdf8;
-    --grid-line: rgba(255, 255, 255, 0.025);
+    --grid-line: rgba(255, 255, 255, 0.03);
 
     color-scheme: dark;
   }
 
-  /* 2. Light Theme */
+  /* 2. Light Theme (Clean Crisp Minimal SaaS) */
   html[data-theme="light"] {
     --bg-surface: #f8fafc;
     --bg-surface-elevated: #ffffff;
-    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card: rgba(255, 255, 255, 0.9);
     --bg-card-hover: #ffffff;
     --border-color: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(14, 165, 233, 0.4);
+    --border-hover: rgba(14, 165, 233, 0.45);
 
     --text-main: #0f172a;
     --text-muted: #475569;
@@ -43,22 +43,22 @@
     --accent-secondary: #6366f1;
     --accent-tertiary: #9333ea;
 
-    --glow-color: rgba(2, 132, 199, 0.1);
+    --glow-color: rgba(2, 132, 199, 0.12);
     --badge-bg: rgba(2, 132, 199, 0.1);
     --badge-text: #0284c7;
-    --grid-line: rgba(0, 0, 0, 0.035);
+    --grid-line: rgba(0, 0, 0, 0.04);
 
     color-scheme: light;
   }
 
-  /* 3. Cyberpunk Neon Theme */
+  /* 3. Cyberpunk Neon Theme (Midnight Electric Void) */
   html[data-theme="cyberpunk"] {
-    --bg-surface: #040409;
-    --bg-surface-elevated: #0a0a14;
-    --bg-card: rgba(14, 14, 26, 0.9);
-    --bg-card-hover: rgba(24, 24, 42, 0.95);
-    --border-color: rgba(255, 0, 127, 0.25);
-    --border-hover: rgba(0, 240, 255, 0.6);
+    --bg-surface: #020206;
+    --bg-surface-elevated: #070712;
+    --bg-card: rgba(12, 12, 24, 0.85);
+    --bg-card-hover: rgba(22, 22, 42, 0.95);
+    --border-color: rgba(255, 0, 127, 0.3);
+    --border-hover: rgba(0, 240, 255, 0.7);
 
     --text-main: #ffffff;
     --text-muted: #cbd5e1;
@@ -68,10 +68,10 @@
     --accent-secondary: #ff007f;
     --accent-tertiary: #ffe600;
 
-    --glow-color: rgba(255, 0, 127, 0.18);
-    --badge-bg: rgba(0, 240, 255, 0.12);
+    --glow-color: rgba(255, 0, 127, 0.25);
+    --badge-bg: rgba(0, 240, 255, 0.15);
     --badge-text: #00f0ff;
-    --grid-line: rgba(0, 240, 255, 0.05);
+    --grid-line: rgba(0, 240, 255, 0.06);
 
     color-scheme: dark;
   }
@@ -83,7 +83,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Hide sticky navbar completely when modal is open to eliminate any overlap */
 html.modal-open header {
   display: none !important;
 }
@@ -112,32 +111,34 @@ h1, h2, h3, h4, .font-heading {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Background Mesh & Grid Patterns */
+/* Background Mesh & Radial Gradients */
 .bg-mesh-grid {
   background-image: 
+    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(56, 189, 248, 0.12), transparent),
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-size: 100% 100%, 40px 40px, 40px 40px;
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism Card with Glow Border Effect */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-color);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 8px 24px -8px var(--glow-color);
+  box-shadow: 0 12px 32px -8px var(--glow-color);
+  transform: translateY(-2px);
 }
 
 .glass-nav {
   background: var(--bg-card);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -161,11 +162,27 @@ h1, h2, h3, h4, .font-heading {
   scrollbar-width: none;
 }
 
-/* Text Gradients */
+/* Glowing Text Gradients */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 40%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated Border Glow Pulse */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(56, 189, 248, 0.2); box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
+  50% { border-color: rgba(168, 85, 247, 0.5); box-shadow: 0 0 25px rgba(168, 85, 247, 0.25); }
+}
+
+.animate-border-glow {
+  animation: border-glow 4s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
