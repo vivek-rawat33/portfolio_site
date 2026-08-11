@@ -15,9 +15,9 @@ export const TechStackSection: React.FC = () => {
     <section id="skills" className="py-16 border-b border-border-color font-sans">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
-        <div className="flex items-center gap-2 text-xs font-semibold text-muted uppercase tracking-wider mb-2">
+        <div className="section-label">
           <Cpu className="w-3.5 h-3.5" />
-          <span>Skills & Stack</span>
+          <span>Skills &amp; Stack</span>
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-bold font-heading text-main mb-6 tracking-tight">
@@ -32,8 +32,8 @@ export const TechStackSection: React.FC = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium vercel-btn whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-white text-black font-semibold shadow-sm'
-                  : 'bg-surface-elevated text-muted hover:text-main border border-border-color hover:border-border-hover'
+                  ? 'bg-accent-blue text-white font-semibold shadow-sm'
+                  : 'bg-card text-muted hover:text-main border border-border-color hover:border-border-hover'
               }`}
             >
               {cat}
@@ -52,7 +52,7 @@ export const TechStackSection: React.FC = () => {
                 <div className="text-sm font-semibold text-main">{skill.name}</div>
                 <div className="text-xs text-muted mt-0.5">{skill.description}</div>
               </div>
-              <span className="text-xs font-code font-semibold text-muted px-2 py-0.5 rounded bg-surface border border-border-color shrink-0 ml-2">
+              <span className="text-xs font-code font-semibold text-accent-green px-2 py-0.5 rounded bg-accent-green/10 border border-accent-green/25 shrink-0 ml-2">
                 {skill.proficiency}%
               </span>
             </div>

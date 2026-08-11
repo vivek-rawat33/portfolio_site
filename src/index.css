@@ -1,153 +1,158 @@
 @import "tailwindcss";
 
-@layer base {
-  /* Minimal Vercel Dark Theme (Default) */
-  :root, html[data-theme="dark"] {
-    --bg-surface: #000000;
-    --bg-surface-elevated: #0a0a0a;
-    --bg-card: #0d0d0d;
-    --bg-card-hover: #141414;
-    --border-color: #222222;
-    --border-hover: #444444;
+/* ─── Design Tokens via @theme ─────────────────────────────────────── */
+@theme {
+  --color-surface:          #09090b;
+  --color-surface-elevated: #111113;
+  --color-card:             #161618;
+  --color-card-hover:       #1c1c1f;
 
-    --text-main: #ffffff;
-    --text-muted: #888888;
-    --text-dim: #555555;
+  --color-border-color:     #2a2a2e;
+  --color-border-hover:     #3f3f46;
 
-    --accent-primary: #ffffff;
-    --accent-secondary: #aaaaaa;
+  --color-main:             #fafafa;
+  --color-muted:            #71717a;
+  --color-dim:              #3f3f46;
 
-    color-scheme: dark;
-  }
+  --color-accent-blue:      #0070f3;
+  --color-accent-green:     #10b981;
 
-  /* Minimal Vercel Light Theme */
-  html[data-theme="light"] {
-    --bg-surface: #ffffff;
-    --bg-surface-elevated: #fafafa;
-    --bg-card: #f4f4f5;
-    --bg-card-hover: #e4e4e7;
-    --border-color: #e4e4e7;
-    --border-hover: #a1a1aa;
-
-    --text-main: #000000;
-    --text-muted: #666666;
-    --text-dim: #999999;
-
-    --accent-primary: #000000;
-    --accent-secondary: #555555;
-
-    color-scheme: light;
-  }
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-code:    'JetBrains Mono', 'Fira Code', monospace;
 }
 
-html, body {
-  width: 100vw;
+/* ─── Light-theme overrides ─────────────────────────────────────────── */
+html[data-theme="light"] {
+  --color-surface:          #ffffff;
+  --color-surface-elevated: #fafafa;
+  --color-card:             #f4f4f5;
+  --color-card-hover:       #ebebed;
+  --color-border-color:     #e4e4e7;
+  --color-border-hover:     #a1a1aa;
+  --color-main:             #09090b;
+  --color-muted:            #71717a;
+  --color-dim:              #d4d4d8;
+  --color-accent-green:     #059669;
+}
+
+/* ─── Global reset / base ─────────────────────────────────────────── */
+html, body, #root {
+  width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  box-sizing: border-box;
 }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
-
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
 
 body {
-  background-color: var(--bg-surface);
-  color: var(--text-main);
-  font-family: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-main);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease;
-  letter-spacing: -0.01em;
 }
 
-h1, h2, h3, h4, .font-heading {
-  font-family: 'Geist', sans-serif;
-  letter-spacing: -0.03em;
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
   font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
+  color: var(--color-main);
 }
 
-.font-code {
-  font-family: 'Geist Mono', 'JetBrains Mono', monospace;
-}
+/* ─── Component classes ─────────────────────────────────────────── */
 
-/* Minimal Clean Card with Vercel Hover Elevation */
-.clean-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.clean-card:hover {
-  border-color: var(--border-hover);
-  background-color: var(--bg-card-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
-}
-
+/* Navbar blur */
 .clean-nav {
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
+  background-color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--color-border-color);
 }
 
-html[data-theme="light"] .clean-nav {
-  background-color: rgba(255, 255, 255, 0.8);
+/* Cards */
+.clean-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border-color);
+  border-radius: 10px;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
-
-/* Vercel Button Micro-Hover */
-.vercel-btn {
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
-}
-
-.vercel-btn:hover {
+.clean-card:hover {
+  border-color: var(--color-border-hover);
+  background-color: var(--color-card-hover);
+  box-shadow: 0 4px 24px rgba(0, 112, 243, 0.06);
   transform: translateY(-1px);
 }
 
-.vercel-btn:active {
-  transform: translateY(0);
+/* Subtle btn press */
+.vercel-btn {
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease,
+              border-color 0.15s ease, background-color 0.15s ease;
+}
+.vercel-btn:active { transform: scale(0.97) !important; }
+
+/* Gradient text */
+.text-gradient-blue-green {
+  background: linear-gradient(135deg, #0070f3 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Prevent Navbar Overlap when Modal is Active */
-html.modal-open header {
-  display: none !important;
+/* ─── Form inputs ───────────────────────────────────────────────── */
+.form-field {
+  width: 100%;
+  padding: 9px 13px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: var(--color-main);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-color);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  resize: none;
 }
+.form-field:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+}
+.form-field::placeholder { color: var(--color-dim); }
 
-html.modal-open body {
-  overflow: hidden !important;
-}
+/* ─── Utilities ─────────────────────────────────────────────────── */
+html.modal-open header { display: none !important; }
+html.modal-open body   { overflow: hidden !important; }
 
-/* Hide scrollbar utility for touch scroll tabs */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Scrollbars */
-::-webkit-scrollbar {
-  width: 5px;
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border-color); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-blue); }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+/* Section label pill */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-blue);
+  margin-bottom: 6px;
 }

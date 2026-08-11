@@ -36,10 +36,10 @@ export const Navbar: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           
-          {/* Minimal Name Logo */}
+          {/* Minimal Brand Name Logo with Emerald Dot */}
           <a href="#" className="flex items-center gap-2 group">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-heading font-bold text-sm sm:text-base tracking-tight text-main group-hover:text-muted transition-colors">
+            <span className="font-heading font-bold text-sm sm:text-base tracking-tight text-main group-hover:text-[#0070f3] transition-colors">
               {portfolioData.personalInfo.name}
             </span>
           </a>
@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-medium text-muted hover:text-main transition-colors"
+                className="text-xs font-medium text-muted hover:text-[#0070f3] transition-colors"
               >
                 {link.name}
               </a>
@@ -100,13 +100,13 @@ export const Navbar: React.FC = () => {
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Minimal CTA */}
+            {/* Minimal CTA (Vercel Blue) */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-main bg-surface-elevated hover:bg-border-color border border-border-color rounded-lg transition-all"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#0070f3] hover:bg-blue-600 rounded-lg shadow-sm transition-all vercel-btn"
             >
               <span>Contact</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
+              <ArrowUpRight className="w-3 h-3 text-white/80" />
             </a>
 
           </div>
@@ -139,13 +139,13 @@ export const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium text-muted hover:text-main py-1"
+              className="text-sm font-medium text-muted hover:text-[#0070f3] py-1"
             >
               {link.name}
             </a>
           ))}
           <div className="pt-2 border-t border-border-color flex items-center justify-between">
-            <span className="text-xs text-muted">Social Profiles:</span>
+            <span className="text-xs text-muted">Social:</span>
             <div className="flex items-center gap-3">
               <a href={githubLink} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-main">
                 <GithubIcon className="w-4 h-4" />
